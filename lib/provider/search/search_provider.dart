@@ -17,6 +17,7 @@ class SearchProvider extends ChangeNotifier {
 
   final TextEditingController controller = TextEditingController();
 
+//<-------> GET CURRENT LOCATION FROM SEARCHED QUARY<------->
   Future<Position> getLocation() async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied ||
@@ -34,6 +35,7 @@ class SearchProvider extends ChangeNotifier {
     return position;
   }
 
+  //<-------> SEARCH LOCATION <------->
   void searchLocation(BuildContext context) async {
     _isLoading = true;
     notifyListeners();
@@ -61,6 +63,7 @@ class SearchProvider extends ChangeNotifier {
     }
   }
 
+//<-------> GET ADDRESS FROM LAT LONG <------->
   Future<void> getAddressFromLatLong(lat, long) async {
     try {
       List<Placemark> placeMarks = await placemarkFromCoordinates(lat, long);
@@ -71,7 +74,7 @@ class SearchProvider extends ChangeNotifier {
       notifyListeners();
     } catch (e) {}
   }
-
+//<-------> GET WEATHER <------->
   Future<void> getWeather() async {
     Map<String, dynamic> queryParams = {
       'lat': latitude,

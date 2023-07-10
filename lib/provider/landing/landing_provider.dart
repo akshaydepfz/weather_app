@@ -10,17 +10,21 @@ class LandingProvider extends ChangeNotifier {
   int _selectedIndex = 0;
   int get selectedIndex => _selectedIndex;
 
+//<-------> BOTTOMBAR  CHANGE VALUE <------->
   void onBottomIndexChange(int i) {
     _selectedIndex = i;
     notifyListeners();
   }
 
+//<-------> BOTTOMBAR  ITEMS <------->
   List<BottomNavigationModel> bottomNavItem = [
     BottomNavigationModel(icon: AppAssets.home),
     BottomNavigationModel(icon: AppAssets.search),
     BottomNavigationModel(icon: AppAssets.bell),
     BottomNavigationModel(icon: AppAssets.user)
   ];
+
+  //<-------> BOTTOMBAR PAGES <------->
   List<Widget> pages = [
     const HomeScreen(),
     const SearchScreen(),

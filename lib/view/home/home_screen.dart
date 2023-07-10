@@ -73,7 +73,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     width: 50,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Color(0xFF232434),
                     ),
                   ),
                 ],
@@ -170,7 +169,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   WeatherIconCard(
                                       icon: AppAssets.wind,
-                                      value: provider.currentWeather!.windSpd
+                                      value: double.parse(provider
+                                              .currentWeather!.windSpd
+                                              .toString())
+                                          .round()
                                           .toString(),
                                       title: 'Wind Speed'),
                                   WeatherIconCard(
@@ -180,7 +182,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                       title: 'Humidity'),
                                   WeatherIconCard(
                                       icon: AppAssets.clouds,
-                                      value: provider.currentWeather!.windSpd
+                                      value: double.parse(provider
+                                              .currentWeather!.windSpd
+                                              .toString())
+                                          .round()
                                           .toString(),
                                       title: 'Cloud Coverage'),
                                 ],

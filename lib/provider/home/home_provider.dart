@@ -17,15 +17,20 @@ class HomeProvider extends ChangeNotifier {
   bool _isFahrenheit = false;
   bool get isFahrenheit => _isFahrenheit;
 
+
+//<-------> SWITCH CHANGE VALUE <------->
   void onSwitchChange() {
     _isFahrenheit = !_isFahrenheit;
     notifyListeners();
   }
 
+//<-------> CELSIUS FARENHEIT CONVERTER <------->
   double celsiusToFahrenheit(double celsius) {
     return (celsius * 9 / 5) + 32;
   }
 
+
+//<-------> PERMISSION CHECK <------->
   Future<void> permissionCheck() async {
     await Permission.locationAlways.request();
     if (await Permission.location.request().isGranted) {
@@ -35,6 +40,7 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
+//<-------> WEATHER CODE BY WEATHERBIT<------->
   String weatherAnimation(int code) {
     List<int> rainCode = [
       200,
@@ -70,6 +76,7 @@ class HomeProvider extends ChangeNotifier {
     return AppAssets.sunnyLottie;
   }
 
+//<-------> GET CURRENT LOCATION <------->
   Future<void> getCurrentLocation() async {
     Position position = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high,
@@ -81,6 +88,7 @@ class HomeProvider extends ChangeNotifier {
     getAddressFromLatLong(position.latitude, position.longitude);
   }
 
+//<-------> FETCH ADDRESS FROM LAT LONG <------->
   Future<void> getAddressFromLatLong(lat, long) async {
     try {
       List<Placemark> placeMarks = await placemarkFromCoordinates(lat, long);
@@ -92,7 +100,7 @@ class HomeProvider extends ChangeNotifier {
       print(_address);
     } catch (e) {}
   }
-
+//<-------> CURRENT WEATHER GET <------->
   Future<void> getCurrentWeather() async {
     Map<String, dynamic> queryParams = {
       'lat': latitude,
