@@ -39,7 +39,7 @@ class SearchProvider extends ChangeNotifier {
     notifyListeners();
     try {
       List<Location> locations = await locationFromAddress(controller.text);
-      if (locations != null && locations.isNotEmpty) {
+      if (locations.isNotEmpty) {
         Location location = locations.first;
         latitude = location.latitude;
         longitude = location.longitude;
