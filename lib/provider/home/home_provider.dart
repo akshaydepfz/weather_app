@@ -14,9 +14,9 @@ class HomeProvider extends ChangeNotifier {
   double longitude = 0;
   double latitude = 0;
   final Dio dio = Dio();
+
   bool _isFahrenheit = false;
   bool get isFahrenheit => _isFahrenheit;
-
 
 //<-------> SWITCH CHANGE VALUE <------->
   void onSwitchChange() {
@@ -29,10 +29,10 @@ class HomeProvider extends ChangeNotifier {
     return (celsius * 9 / 5) + 32;
   }
 
-
 //<-------> PERMISSION CHECK <------->
   Future<void> permissionCheck() async {
     await Permission.locationAlways.request();
+
     if (await Permission.location.request().isGranted) {
       print('isGranted');
     } else if (await Permission.location.request().isDenied) {
@@ -78,14 +78,18 @@ class HomeProvider extends ChangeNotifier {
 
 //<-------> GET CURRENT LOCATION <------->
   Future<void> getCurrentLocation() async {
-    Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
-    latitude = position.latitude;
-    longitude = position.longitude;
-    notifyListeners();
-    getCurrentWeather();
-    getAddressFromLatLong(position.latitude, position.longitude);
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+      latitude = position.latitude;
+      longitude = position.longitude;
+      notifyListeners();
+      getCurrentWeather();
+      getAddressFromLatLong(position.latitude, position.longitude);
+    } catch (e) {
+      permissionCheck();
+    }
   }
 
 //<-------> FETCH ADDRESS FROM LAT LONG <------->
@@ -100,6 +104,7 @@ class HomeProvider extends ChangeNotifier {
       print(_address);
     } catch (e) {}
   }
+
 //<-------> CURRENT WEATHER GET <------->
   Future<void> getCurrentWeather() async {
     Map<String, dynamic> queryParams = {
