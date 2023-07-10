@@ -145,6 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               .celsiusToFahrenheit(double.parse(
                                                   provider.currentWeather!.temp
                                                       .toString()))
+                                              .round()
                                               .toString()
                                           : provider.currentWeather!.temp
                                               .toString(),
