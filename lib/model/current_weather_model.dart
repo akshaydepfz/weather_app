@@ -16,7 +16,7 @@ class CurrentWeatherModel {
   double lon;
   String obTime;
   String pod;
-  int precip;
+  double precip;
   double pres;
   int rh;
   double slp;

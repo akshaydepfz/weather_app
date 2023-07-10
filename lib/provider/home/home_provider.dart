@@ -31,8 +31,7 @@ class HomeProvider extends ChangeNotifier {
 
 //<-------> PERMISSION CHECK <------->
   Future<void> permissionCheck() async {
-    await Permission.locationAlways.request();
-
+    await Permission.location.request();
     if (await Permission.location.request().isGranted) {
       print('isGranted');
     } else if (await Permission.location.request().isDenied) {
