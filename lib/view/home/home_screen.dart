@@ -116,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Center(
                     child: provider.currentWeather == null
-                        ? const CircularProgressIndicator()
+                        ? const LinearProgressIndicator()
                         : Column(
                             children: [
                               SizedBox(

@@ -17,4 +17,5 @@ class AppAssets {
   static const sunnyLottie = "assets/lottie/sunny.json";
   static const snowLottie = "assets/lottie/snow.json";
   static const rainingLottie = "assets/lottie/raining.json";
+  static const loading = "assets/lottie/raining.json";
 }
