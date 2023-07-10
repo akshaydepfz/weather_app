@@ -16,7 +16,7 @@ class CurrentWeatherModel {
   double lon;
   String obTime;
   String pod;
-  double precip;
+  String precip;
   double pres;
   int rh;
   double slp;
@@ -98,7 +98,7 @@ class CurrentWeatherModel {
         lon: json["lon"]?.toDouble(),
         obTime: json["ob_time"],
         pod: json["pod"],
-        precip: json["precip"],
+        precip: json["precip"].toString(),
         pres: json["pres"]?.toDouble(),
         rh: json["rh"],
         slp: json["slp"]?.toDouble(),

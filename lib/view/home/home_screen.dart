@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     Provider.of<HomeProvider>(context, listen: false).permissionCheck();
-    Provider.of<HomeProvider>(context, listen: false).getCurrentLocation();
+
     super.initState();
   }
 

@@ -30,12 +30,26 @@ class HomeProvider extends ChangeNotifier {
   }
 
 //<-------> PERMISSION CHECK <------->
-  Future<void> permissionCheck() async {
-    await Permission.location.request();
-    if (await Permission.location.request().isGranted) {
-      print('isGranted');
-    } else if (await Permission.location.request().isDenied) {
-      print('isDenied');
+
+  Future<bool> permissionCheck() async {
+    // Request location permission
+    PermissionStatus permissionStatus = await Permission.location.request();
+
+    // Check the permission status
+    if (permissionStatus.isGranted) {
+      getCurrentLocation();
+      // Permission granted
+      return true;
+    } else if (permissionStatus.isDenied) {
+      // Permission denied
+      return false;
+    } else if (permissionStatus.isPermanentlyDenied) {
+      // Permission permanently denied, navigate to app settings
+      openAppSettings();
+      return false;
+    } else {
+      // Permission denied with asking never again
+      return false;
     }
   }
 
